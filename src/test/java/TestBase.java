@@ -14,6 +14,7 @@ public class TestBase extends Assert {
     protected PipedOutputStream pipedOutputStream;
     protected PipedInputStream pipedInputStream;
     protected ByteArrayOutputStream outputStream;
+    PrintStream tempPrintStream;
 
     @BeforeMethod
     public void beforeTest() throws IOException {
@@ -22,11 +23,14 @@ public class TestBase extends Assert {
         System.setIn(pipedInputStream);
 
         outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
+        tempPrintStream = new PrintStream(outputStream);
+        System.setOut(tempPrintStream);
     }
 
     @AfterMethod
     public void afterTest() {
+        System.setOut(originalStdOut);
+        System.out.println(outputStream.toString());
         clearOutputStream();
     }
 
@@ -50,6 +54,7 @@ public class TestBase extends Assert {
             tries--;
         }
         String output = outputStream.toString().replaceAll("\r\n$", "");
+        toggleOutAndPrint(output);
         clearOutputStream();
         return output;
     }
@@ -60,5 +65,11 @@ public class TestBase extends Assert {
 
     protected void clearOutputStream() {
         outputStream.reset();
+    }
+
+    protected void toggleOutAndPrint(String output) {
+        System.setOut(originalStdOut);
+        System.out.println(output);
+        System.setOut(tempPrintStream);
     }
 }

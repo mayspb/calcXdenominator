@@ -1,6 +1,5 @@
 import calculator.Handler;
 import calculator.InOut;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 public class CalculatorTest extends TestBase {
@@ -22,10 +21,4 @@ public class CalculatorTest extends TestBase {
         }
     }
 
-    @AfterMethod
-    public void afterTest() {
-        System.setOut(originalStdOut);
-        System.out.println(outputStream.toString());
-        outputStream.reset();
-    }
 }

@@ -1,6 +1,6 @@
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -10,11 +10,12 @@ import java.io.PrintStream;
 
 public class TestBase extends Assert {
 
-    private PipedOutputStream pipedOutputStream;
-    private PipedInputStream pipedInputStream;
-    private ByteArrayOutputStream outputStream;
+    protected final PrintStream originalStdOut = System.out;
+    protected PipedOutputStream pipedOutputStream;
+    protected PipedInputStream pipedInputStream;
+    protected ByteArrayOutputStream outputStream;
 
-    @BeforeTest
+    @BeforeMethod
     public void beforeTest() throws IOException {
         pipedOutputStream = new PipedOutputStream();
         pipedInputStream = new PipedInputStream(pipedOutputStream);
@@ -24,23 +25,26 @@ public class TestBase extends Assert {
         System.setOut(new PrintStream(outputStream));
     }
 
-    @AfterTest
+    @AfterMethod
     public void afterTest() {
         clearOutputStream();
     }
 
-    public void startCalc() {
-        Thread thread = new Thread("Calculator"){
-            @Override public void run(){Calculator.main();}
+    protected void startCalc() {
+        Thread thread = new Thread("Calculator") {
+            @Override
+            public void run() {
+                Calculator.main();
+            }
         };
         thread.setDaemon(true);
         thread.start();
     }
 
-    public String getDisplayedText() throws InterruptedException {
+    protected String getDisplayedText() throws InterruptedException {
         boolean displayed = false;
         int tries = 15;
-        while(tries > 0 && !displayed){
+        while (tries > 0 && !displayed) {
             Thread.sleep(100);
             displayed = outputStream.toString().length() > 0;
             tries--;
@@ -50,11 +54,11 @@ public class TestBase extends Assert {
         return output;
     }
 
-    public void userEnters(String userInput) throws IOException {
+    protected void userEnters(String userInput) throws IOException {
         pipedOutputStream.write(userInput.getBytes());
     }
 
-    public void clearOutputStream() {
+    protected void clearOutputStream() {
         outputStream.reset();
     }
 }

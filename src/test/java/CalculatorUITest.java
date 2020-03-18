@@ -13,7 +13,7 @@ public class CalculatorUITest extends TestBase {
         if (!expected.equals("rejection")) {
             assertEquals(getDisplayedText(), "1 / " + value + " = " + expected);
         } else {
-            assertEquals(getDisplayedText(), InOut.REJECTION_TEXT + value);
+            assertEquals(getDisplayedText(), InOut.REJECTION_TEXT + "'" + value + "'");
         }
     }
 

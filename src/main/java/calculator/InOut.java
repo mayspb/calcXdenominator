@@ -20,12 +20,12 @@ public class InOut {
         input = scanner.nextLine();
     }
 
-    public void setInput(String input) {
-        this.input = input;
-    }
-
     public String getInput() {
         return input;
+    }
+
+    public void setInput(String input) {
+        this.input = input;
     }
 
     public void printResult(Double result) {
@@ -33,7 +33,7 @@ public class InOut {
     }
 
     public void printRejection() {
-        System.out.println(REJECTION_TEXT + input);
+        System.out.println(REJECTION_TEXT + "'" + input + "'");
     }
 
 }

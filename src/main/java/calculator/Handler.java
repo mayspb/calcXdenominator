@@ -9,7 +9,7 @@ public class Handler {
     }
 
     public boolean validateInput(String input) {
-        return Pattern.matches("[-+]?\\d*\\.?\\d*(E|E-)?\\d{1,3}", input);
+        return Pattern.matches("[-+]?(\\d*\\.?\\d*([eE]|[eE]-)?\\d+([dD]|[fF])?)|[-+]?(NaN){1}", input);
     }
 
 }

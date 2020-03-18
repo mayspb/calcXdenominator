@@ -61,6 +61,7 @@ public class TestBase extends Assert {
 
     protected void userEnters(String userInput) throws IOException {
         pipedOutputStream.write(userInput.getBytes());
+        toggleOutAndPrint(userInput);
     }
 
     protected void clearOutputStream() {

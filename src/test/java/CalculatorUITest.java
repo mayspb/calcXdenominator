@@ -8,12 +8,12 @@ public class CalculatorUITest extends TestBase {
     @Test(dataProvider = "getData", dataProviderClass = TestData.class)
     public void testUI(String value, Object expected) throws InterruptedException, IOException {
         startCalc();
-        getDisplayedText();
+        getDisplayedTextPrintAndClearStream();
         userEnters(value + "\r\n");
         if (!expected.equals("rejection")) {
-            assertEquals(getDisplayedText(), "1 / " + value + " = " + expected);
+            assertEquals(getDisplayedTextPrintAndClearStream(), "1 / " + value + " = " + expected);
         } else {
-            assertEquals(getDisplayedText(), InOut.REJECTION_TEXT + "'" + value + "'");
+            assertEquals(getDisplayedTextPrintAndClearStream(), InOut.REJECTION_TEXT + "'" + value + "'");
         }
     }
 

@@ -15,6 +15,7 @@ public class TestData {
                 {"1000d", 0.001},
                 {"-500", -0.002},
                 {".123", 8.130081300813009},
+                {"0.00001", 99999.99999999999},
                 {"3.14", 0.3184713375796178},
                 {"3.14f", 0.3184713375796178},
                 {"12.34D", 0.08103727714748785},
@@ -32,22 +33,21 @@ public class TestData {
                 {"12.34e-123", 8.103727714748785E121},
                 {"12.34e-1234", Double.POSITIVE_INFINITY},
                 {"12.34e-12345", Double.POSITIVE_INFINITY},
-                {"0.00001", 99999.99999999999},
                 {"0", Double.POSITIVE_INFINITY},
                 {"-0", Double.NEGATIVE_INFINITY},
                 {"+0", Double.POSITIVE_INFINITY},
                 {"0d", Double.POSITIVE_INFINITY},
                 {"0f", Double.POSITIVE_INFINITY},
                 {String.valueOf(Long.MIN_VALUE), -1.0842021724855044E-19},
-                {String.valueOf(Long.MAX_VALUE), 1.0842021724855044E-19},
-                {String.valueOf(Double.MIN_VALUE), Double.POSITIVE_INFINITY},
-                {String.valueOf(Double.MAX_VALUE), 5.562684646268003E-309},
-                {String.valueOf(Double.MIN_NORMAL), 4.49423283715579E307},
-                {"9223372036854775808", 1.0842021724855044E-19},
                 {"-9223372036854775809", -1.0842021724855044E-19},
-                {"2.2250738585072014E-309", Double.POSITIVE_INFINITY},
-                {"1.7976931348623157E309", 0.0},
+                {String.valueOf(Long.MAX_VALUE), 1.0842021724855044E-19},
+                {"9223372036854775808", 1.0842021724855044E-19},
+                {String.valueOf(Double.MIN_VALUE), Double.POSITIVE_INFINITY},
                 {"4.9E-325", Double.POSITIVE_INFINITY},
+                {String.valueOf(Double.MAX_VALUE), 5.562684646268003E-309},
+                {"1.7976931348623157E309", 0.0},
+                {String.valueOf(Double.MIN_NORMAL), 4.49423283715579E307},
+                {"2.2250738585072014E-309", Double.POSITIVE_INFINITY},
                 {numberOver1024digits, 0.0},
                 {String.valueOf(Double.NaN), Double.NaN},
 
@@ -73,6 +73,7 @@ public class TestData {
                 {"NaNNaN", "rejection"},
                 {"true", "rejection"},
 //            TODO: реализовать обработку спецсимволов, т.к. в зависимости от среды запуска тест может не проходить
+//            При этом валидацию эти символы не пройдут, т.е. на вход функции вычисления они поданы не будут
 //            ☺☻♥♦♣♠•◘○◙♂♀♪♫☼►◄↕‼¶§▬↨↑↓→←∟↔▲▼ ⌂
 //            Коды символов: 0-32, 127, 176-223, 242-255
                 {"☺", "rejection"}

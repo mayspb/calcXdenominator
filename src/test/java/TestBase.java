@@ -14,7 +14,7 @@ public class TestBase extends Assert {
     protected PipedOutputStream pipedOutputStream;
     protected PipedInputStream pipedInputStream;
     protected ByteArrayOutputStream outputStream;
-    PrintStream tempPrintStream;
+    private PrintStream tempPrintStream;
 
     @BeforeMethod
     public void beforeTest() throws IOException {
@@ -45,7 +45,7 @@ public class TestBase extends Assert {
         thread.start();
     }
 
-    protected String getDisplayedText() throws InterruptedException {
+    protected String getDisplayedTextPrintAndClearStream() throws InterruptedException {
         boolean displayed = false;
         int tries = 15;
         while (tries > 0 && !displayed) {

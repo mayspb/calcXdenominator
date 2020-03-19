@@ -15,7 +15,7 @@ public class CalculatorTest extends TestBase {
             assertEquals(result, expected);
         } else {
             inOut.printRejection();
-            String consoleOutput = outputStream.toString().replaceAll("(\r\n?|\n)$", "");
+            String consoleOutput = getDisplayedText();
             expected = InOut.REJECTION_TEXT + "'" + value + "'";
             assertEquals(consoleOutput, expected);
         }

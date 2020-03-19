@@ -45,18 +45,31 @@ public class TestBase extends Assert {
         thread.start();
     }
 
-    protected String getDisplayedTextPrintAndClearStream() throws InterruptedException {
-        boolean displayed = false;
-        int tries = 15;
-        while (tries > 0 && !displayed) {
-            Thread.sleep(100);
-            displayed = outputStream.toString().length() > 0;
-            tries--;
-        }
-        String output = outputStream.toString().replaceAll("(\r\n?|\n)$", "");
+    protected String getDisplayedTextPrintAndClearStream() {
+        isDisplayedText();
+        String output = getDisplayedText();
         toggleOutAndPrint(output);
         clearOutputStream();
         return output;
+    }
+
+    protected boolean isDisplayedText() {
+        boolean displayed = false;
+        int tries = 15;
+        while (tries > 0 && !displayed) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            displayed = outputStream.toString().length() > 0;
+            tries--;
+        }
+        return displayed;
+    }
+
+    protected String getDisplayedText() {
+        return outputStream.toString().replaceAll("(\r\n?|\n)$", "");
     }
 
     protected void userEnters(String userInput) throws IOException {

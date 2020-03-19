@@ -6,7 +6,7 @@ import java.io.IOException;
 public class CalculatorUITest extends TestBase {
 
     @Test(dataProvider = "getData", dataProviderClass = TestData.class)
-    public void testUI(String value, Object expected) throws InterruptedException, IOException {
+    public void testUI(String value, Object expected) throws IOException {
         startCalc();
         getDisplayedTextPrintAndClearStream();
         userEnters(value + "\r\n");

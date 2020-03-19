@@ -53,7 +53,7 @@ public class TestBase extends Assert {
             displayed = outputStream.toString().length() > 0;
             tries--;
         }
-        String output = outputStream.toString().replaceAll("\r\n$", "");
+        String output = outputStream.toString().replaceAll("(\r\n?|\n)$", "");
         toggleOutAndPrint(output);
         clearOutputStream();
         return output;

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class InOut {
 
-    public static final String REJECTION_TEXT = "Expression couldn't calculated with value ";
+    public static final String REJECTION_TEXT = "Expression couldn't been calculated with value ";
     public static final String START_DESCRIPTION = "This program makes calculation of expression 1/x, where x should be inputted by the user.";
     public static final String ENTER_VALUE = "Enter a value: ";
 

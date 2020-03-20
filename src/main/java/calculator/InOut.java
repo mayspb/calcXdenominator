@@ -11,7 +11,7 @@ public class InOut {
     private String input = "";
 
     public void printDescription() {
-        System.out.println(START_DESCRIPTION);
+        System.out.println("\n" + START_DESCRIPTION);
     }
 
     public void inputValue() {

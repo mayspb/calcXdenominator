@@ -50,7 +50,6 @@ public class TestData {
                 {"2.2250738585072014E-309", Double.POSITIVE_INFINITY},
                 {numberOver1024digits, 0.0},
                 {String.valueOf(Double.NaN), Double.NaN},
-
                 {"", "rejection"},
                 {" ", "rejection"},
                 {"10L", "rejection"},
@@ -72,12 +71,10 @@ public class TestData {
                 {"-", "rejection"},
                 {"NaNNaN", "rejection"},
                 {"true", "rejection"},
-//            TODO: реализовать обработку спецсимволов, т.к. в зависимости от среды запуска тест может не проходить
-//            При этом валидацию эти символы не пройдут, т.е. на вход функции вычисления они поданы не будут
-//            ☺☻♥♦♣♠•◘○◙♂♀♪♫☼►◄↕‼¶§▬↨↑↓→←∟↔▲▼ ⌂
-//            Коды символов: 0-32, 127, 176-223, 242-255
                 {"☺", "rejection"},
-                {"\\U0001", "rejection"}
+                {"©", "rejection"},
+                {"\\U0001", "rejection"},
+                {"Кириллица", "rejection"}
         };
     }
 

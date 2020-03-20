@@ -16,8 +16,8 @@ public class CalculatorTest extends TestBase {
         } else {
             inOut.printRejection();
             String consoleOutput = getDisplayedText();
-            expected = InOut.REJECTION_TEXT + "'" + value + "'";
-            assertEquals(consoleOutput, expected);
+            assertTrue(consoleOutput.contains(InOut.REJECTION_TEXT),
+                    getErrorMessage(consoleOutput, InOut.REJECTION_TEXT));
         }
     }
 

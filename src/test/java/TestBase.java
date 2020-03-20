@@ -86,4 +86,10 @@ public class TestBase extends Assert {
         System.out.println(output);
         System.setOut(tempPrintStream);
     }
+
+    protected String getErrorMessage(String found, String expected) {
+        return "String from console output is not what is expected:\n" +
+                "Expected: " + expected + "\n" +
+                "Found:    " + found + "\n";
+    }
 }
